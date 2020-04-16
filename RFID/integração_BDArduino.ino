@@ -50,3 +50,6 @@
        delete cur_mem;
        delay(2000);
     }
+
+
+https://portal.vidadesilicio.com.br/banco-de-dados-mysql-arduino-shield-ethernet-w5100/
