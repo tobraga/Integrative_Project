@@ -108,3 +108,7 @@ void mensageminicial()
   lcd.print("cartao do leitor");  
 }
 */
+
+https://portal.vidadesilicio.com.br/modulo-rfid-rc522-mifare/
+
+https://www.filipeflop.com/blog/controle-acesso-leitor-rfid-arduino/
