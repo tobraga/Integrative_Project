@@ -20,7 +20,7 @@
   
   CREATE TABLE registrotemp(
     medida INTEGER PRIMARY KEY AUTO_INCREMENT,
-    temperatura FLOAT
+    tag char(50),
     data_e_hora TIMESTAMP
   );
   
