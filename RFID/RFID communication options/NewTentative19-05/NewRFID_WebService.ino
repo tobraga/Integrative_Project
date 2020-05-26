@@ -13,6 +13,7 @@ EthernetServer server(80);
 
 //Definindo os pinos que serão utilizados para ligação do display LCD
 String IDtag = ""; //Variável que armazenará o ID da tag
+boolean Permitido = false;
 
 //Vetor responsável por armazenar os IDs das tags cadastradas
 String TagsCadastradas[] = {"9d8c4255"}; //ID da tag em formato de cartão
@@ -51,50 +52,59 @@ void loop() {
 	for (int i = 0; i < (sizeof(TagsCadastradas)/sizeof(String)); i++) {
 		if( IDtag.equalsIgnoreCase(TagsCadastradas[i]) ){
 			Permitido = true; //Variável Permitido assume valor verdadeiro caso o ID Lido esteja cadastrado
-		}
+			// Mostra UID na serial
+      			Serial.println("UID da tag : " + IDtag);
+      			Serial.println();
+      			Serial.println("Entrada Permitida!");
+		}else{
+      			// Mostra UID na serial
+     			Serial.println("UID da tag : " + IDtag);
+      			Serial.println();
+      			Serial.println("Entrada negada!");
+    		}
 	}
  
     EthernetClient client = server.available();  
     if (client){    
         boolean currentLineIsBlank = true;
         
-		while (client.connected()){
+	while (client.connected()){
         
-			if (client.available()){   
+		if (client.available()){   
                 char c = client.read(); 
                 
-                if (c == '\n' && currentLineIsBlank) {
+                	if (c == '\n' && currentLineIsBlank) {
                   
-                    client.println("HTTP/1.1 200 OK");
-                    client.println("Content-Type: text/html");
-                    client.println("Connection: close");
-                    client.println("Refresh: 2");
-                    client.println();
+                    		client.println("HTTP/1.1 200 OK");
+                    		client.println("Content-Type: text/html");
+                    		client.println("Connection: close");
+                    		client.println("Refresh: 2");
+                    		client.println();
                     
-                    client.println("<!DOCTYPE html>");
-                    client.println("<html>");
-                    client.println("<head>");
-                    client.println("<title>Servidor Web VDS</title>");
-                    client.println("</head>");
-                    client.println("<body>");
-                    client.println("<h1><font color=#4279c7>Teste de Comunicação do RFID -- ATENÇÃO</font></h1>");
-                    client.println("<hr/>");
-                    client.println("<h1>TAG</h1>");
-                    client.println(IDtag);   
-                    client.println("<br/>");
-                    client.println("<h1>Entrada digital</h1>");
-					client.println("<h1>Nº: </h1>" + cont);
-                    client.println("</body>");
-                    client.println("</html>");
-                    break;
-                }
+                    		client.println("<!DOCTYPE html>");
+                    		client.println("<html>");
+                    		client.println("<head>");
+                    		client.println("<title>Servidor Web VDS</title>");
+                    		client.println("</head>");
+                    		client.println("<body>");
+                    		client.println("<h1><font color=#4279c7>Teste de Comunicação do RFID -- ATENÇÃO</font></h1>");
+                    		client.println("<hr/>");
+                    		client.println("<h1>TAG</h1>");
+                    		client.println(IDtag);   
+                    		client.println("<br/>");
+                    		client.println("<h1>Entrada digital</h1>");
+				client.println("<h1>Nº: </h1>" + cont);
+                    		client.println("</body>");
+                    		client.println("</html>");
+                    		break;
+                	}
                 
-                if (c == '\n'){    
-                    currentLineIsBlank = true;
-                }else if (c != '\r'){
-                    currentLineIsBlank = false;
-                }
-            } 
+                	if (c == '\n'){    
+                    		currentLineIsBlank = true;
+                	}else if (c != '\r'){
+                    		currentLineIsBlank = false;
+                	}
+            	} 
         } 
         
         delay(1);      
