@@ -13,6 +13,7 @@
 
 //Definindo os pinos que serão utilizados para ligação do display LCD
 String IDtag = ""; //Variável que armazenará o ID da tag
+bool Permitido = false; 
 
 //Vetor responsável por armazenar os IDs das tags cadastradas
 String TagsCadastradas[] = {"9d8c4255"}; //ID da tag em formato de cartão
@@ -32,7 +33,7 @@ void Leitura(){
   SPI.begin(); // Inicializa comunicacao SPI
   LeitorRFID.PCD_Init(); // Inicializa o leitor RFID
   
-  
+   
   IDtag = ""; //Inicialmente IDtag deve estar vazia
 
   // Verifica se existe uma tag presente
@@ -50,6 +51,7 @@ void Leitura(){
   for (int i = 0; i < (sizeof(TagsCadastradas)/sizeof(String)); i++) {
     if( IDtag.equalsIgnoreCase(TagsCadastradas[i]) ){
       Permitido = true; //Variável Permitido assume valor verdadeiro caso o ID Lido esteja cadastrado
+      Serial.println("Entrada Permitida");
     }
   }
 
