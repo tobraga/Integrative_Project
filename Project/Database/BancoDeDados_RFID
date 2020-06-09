@@ -1,0 +1,8 @@
+create database arduinojava2;
+use arduinojava2;
+
+CREATE TABLE rfid (
+  idtag int PRIMARY KEY AUTO_INCREMENT,
+  valortag varchar(20) not null,
+  datatemp timestamp default CURRENT_TIMESTAMP
+);

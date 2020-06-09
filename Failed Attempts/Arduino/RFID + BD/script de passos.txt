@@ -1,0 +1,29 @@
+1 - Instalar a biblioteca para a comunicação e manipulação do banco de dados
+  Após a realização do download dos arquivos compactados no formato ZIP, abra a IDE do Arduino, 
+  selecione o menu Sketch, o submenu Incluir Bilioteca e por fim, basta clicar na opção Adicionar biblioteca .ZIP (Add ZIP Library) 
+  e encontrar o arquivo que acabou de ser baixado
+  
+
+3 - Preparar o MySQL para manipulação com o Arduino
+  
+  Entrar no mysql e atribuir usuario e senha
+  ____
+  > entrar no mysql, habilitar bd e apache, entre no cmd por lá
+  > mysql -u root -p
+  > CREATE USER 'arduino'@'%' IDENTIFIED by 'arduino';
+  ___
+  
+  criar o banco
+  ____
+  CREATE DATABASE banco_arduino;
+  USE banco_arduino;
+  
+  CREATE TABLE registrotemp(
+    medida INTEGER PRIMARY KEY AUTO_INCREMENT,
+    tag char(50),
+    data_e_hora TIMESTAMP
+  );
+  
+
+
+2 - Executar o código
